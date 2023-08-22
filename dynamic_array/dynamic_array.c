@@ -1,15 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include "dynamic_array.h"
 
 /* TO DO: Add pop */
-
-typedef struct vector
-{
-    int length;
-    int capacitiy;
-    int *array;
-} vector;
 
 void init_array(int capacity, vector *v){
     /* capacity can't be zero */
@@ -19,7 +12,6 @@ void init_array(int capacity, vector *v){
     v->array = calloc(capacity, sizeof (int));
     return;
 }
-
 
 void resize_array(int size, vector *v){
     int *new_array = calloc(size, sizeof (int));
@@ -42,18 +34,3 @@ int append(int item, vector *v){
     return v->length;
 }
 
-int main(int argc, char const *argv[])
-{
-    vector v;
-    init_array(8, &v);
-    printf("capacity: %d\n", v.capacitiy);
-    printf("length: %d\n", v.length);
-    for (int i = 0; i < 100; ++i){
-        append(i, &v);
-    }
-    for (int i = 0; i < v.length; ++i){
-        printf("%d ", v.array[i]);
-    }
-    printf("\nthe capacity is now %d", v.capacitiy);
-    return 0;
-}
